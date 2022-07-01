@@ -1,0 +1,49 @@
+<h3>Publications</h3>
+<a href="#new">Add</a><br/>
+<ul x-data="publicationsRoute()" x-init="load()">
+    <template x-for="entry in entries" :key="entry.key">
+        <li>
+            <div>Publisher <span x-text="entry.publisher"></span></div>
+            <div>Channel <span x-text="entry.channelIdDecoded"></span></div>
+            <div>Collection <span x-text="entry.collectionIdDecoded"></span></div>
+            <div>Content <span x-text="entry.contentIdDecoded"></span></div>
+            <div>Type <span x-text="entry.contentMetadata.type"></span></div>
+            <div>
+                <video controls>
+                    <source :src="entry.contentMetadata.src">
+                </video>
+            </div>
+
+            <reactions>
+                <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
+                    <span>
+                        <span x-text="item[1]"></span>
+                        <span x-text="item[0]"></span>
+                    </span>
+                </template>
+            </reactions>
+            <form @submit.prevent="await saveReaction(entry)">
+                <div>Your Reaction:</div>
+                <div><textarea x-model="entry.reaction"></textarea></div>
+                <div>
+                    <button>Save</button>
+                </div>
+            </form>
+
+            <comments>
+                <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
+                    <div>
+                        <span x-text="item[1]"></span>
+                    </div>
+                </template>
+            </comments>
+            <form @submit.prevent="await saveComment(entry)">
+                <div>Your Comment:</div>
+                <div><textarea x-model="entry.comment"></textarea></div>
+                <div>
+                    <button>Save</button>
+                </div>
+            </form>
+        </li>
+    </template>
+</ul>

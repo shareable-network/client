@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client</title>
+    <link href="./index.css" rel="stylesheet">
+    <script src="./index.js" defer></script>
+    <script src="./router.js" defer></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" defer></script>
+    <script src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/ipfs-http-client/dist/index.min.js" defer></script>
+</head>
+<body x-data="$store.app" x-init="await load()">
+<header>
+    <h1>Shareable</h1>
+    <span x-show="!hasWallet()">install <a href="https://metamask.io/download.html">metamask</a></span>
+    <span x-show="hasWallet()">
+        <button @click="getPublisher()" x-show="!publisher">connect wallet</button>
+        <span x-show="publisher">
+            <span x-text="publisher"></span>
+            <button @click="switchChain()" x-show="!chainIsValid()">change chain</button>
+        </span>
+    </span>
+</header>
+<main id="router-view"></main>
+</body>
+</html>
