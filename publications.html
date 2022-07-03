@@ -1,49 +1,68 @@
-<h3>Publications</h3>
 <a href="#new">Add</a><br/>
-<ul x-data="publicationsRoute()" x-init="load()">
+<div x-data="publicationsRoute()" x-init="load()">
     <template x-for="entry in entries" :key="entry.key">
-        <li>
-            <div>Publisher <span x-text="entry.publisher"></span></div>
-            <div>Channel <span x-text="entry.channelIdDecoded"></span></div>
-            <div>Collection <span x-text="entry.collectionIdDecoded"></span></div>
-            <div>Content <span x-text="entry.contentIdDecoded"></span></div>
-            <div>Type <span x-text="entry.contentMetadata.type"></span></div>
-            <div>
-                <video controls>
-                    <source :src="entry.contentMetadata.src">
-                </video>
-            </div>
+        <div class="container">
+            <p class="authors">
+                <a href="#" x-text="entry.publisher"></a> /
+                <a href="#" x-text="entry.channelIdDecoded"></a> /
+                <a href="#" x-text="entry.collectionIdDecoded"></a>
+            </p>
+            <h3 x-text="entry.contentIdDecoded"></h3>
 
-            <reactions>
-                <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
-                    <span>
-                        <span x-text="item[1]"></span>
-                        <span x-text="item[0]"></span>
-                    </span>
-                </template>
-            </reactions>
-            <form @submit.prevent="await saveReaction(entry)">
-                <div>Your Reaction:</div>
-                <div><textarea x-model="entry.reaction"></textarea></div>
-                <div>
-                    <button>Save</button>
-                </div>
-            </form>
+            <div class="row ">
+                <div class="col-md-8">
 
-            <comments>
-                <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
-                    <div>
-                        <span x-text="item[1]"></span>
+                    <div class="wrapper">
+                        <div class="video">
+                            <video controls class="video__item">
+                                <source :src="entry.contentMetadata.src">
+                            </video>
+                        </div>
                     </div>
-                </template>
-            </comments>
-            <form @submit.prevent="await saveComment(entry)">
-                <div>Your Comment:</div>
-                <div><textarea x-model="entry.comment"></textarea></div>
-                <div>
-                    <button>Save</button>
+                    <div class="fatr">
+                        <reactions>
+                            <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
+                                <span>
+                                    <span x-text="item[1]"></span>
+                                    <span x-text="item[0]"></span>
+                                </span>
+                            </template>
+                        </reactions>
+                        <input type="text" class="input-search" id="input-search" x-model="entry.reaction" @keyup.enter="await saveReaction(entry)"/>
+                        <label class="search" for="input-search"></label>
+                    </div>
+
+                    <form @submit.prevent="await saveComment(entry)">
+                        <div class="form-group">
+                            <form action="#" method="post" class="contact-form">
+                                <textarea placeholder="Your comment..." name="comment" cols="30" class="form-controls" rows="3" x-model="entry.comment"></textarea>
+                                <span class="alert-error"></span>
+                            </form>
+                        </div>
+
+                        <div class="button_money">
+                            <div class="button button_1">
+                                <button class="btn_rasp button-59 margin-bot_1" type="submit" name="sent" id="sent">
+                                    Send
+                                </button>
+                                <p class="money">$10</p>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
-            </form>
-        </li>
+
+                <div class="col-6 col-md-4">
+                    <div class="style-comm">
+                        <p>Comments</p>
+                    </div>
+                    <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
+                        <div>
+                            <span x-text="item[1]"></span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
     </template>
-</ul>
+</div>
