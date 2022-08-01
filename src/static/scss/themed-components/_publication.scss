@@ -1,0 +1,120 @@
+.publication {
+  &__price {
+    // font-weight: 800;
+  }
+
+  &__user {
+    @extend .theme-green;
+    @extend .white-text;
+    width: fit-content;
+    border-radius: $border-radius-small;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    // TODO:
+    line-height: 64px;
+
+    & img {
+      display: flex;
+      width: 50px;
+      height: 50px;
+    }
+
+    &__name {
+      margin: 0 0.5rem 0 1rem;
+      line-height: 32px;
+      font-size: 1rem;
+    }
+  } 
+}
+
+.discussion {
+  .reactions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    // overflow-y: scroll;
+    overflow-y: auto;
+  }
+  .reaction {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 2rem;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    border-radius: $border-radius-small;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      // background-color: opacify(theme-color('green'), 0.5);
+      background-color: #00000030;
+      padding: 0.5rem 2px;
+      transform: scale(1.05);
+    }
+
+    &__text {
+      // color: theme-color('green');
+    }
+
+    &__count {
+      @extend .theme-plate;
+      padding-top: 0;
+      padding-bottom: 0;
+      min-width: 2rem;
+      text-align: center;
+    }
+  }
+  .comments {
+    
+  }
+  .comment {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0.5rem;
+    // TODO:
+    line-height: 32px;
+
+    &__avatar {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      background-color: aqua;
+      
+      & img {
+        display: flex;
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    &__text {
+      margin-left: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      word-break: break-word;
+      height: 100%;
+    }
+  
+    // &__name {
+    //   // margin: 0 0.5rem 0 1rem;
+    //   // line-height: 32px;
+    //   // font-size: 1rem;
+    //   background-color: red;
+    //   color: white;
+    // }
+  }
+}

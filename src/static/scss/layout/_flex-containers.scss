@@ -1,0 +1,37 @@
+.l-container {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+.l-center {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: center;
+ width: 100%;
+}
+
+.l-row {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+}
+
+.l-col {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.l-right {
+ display: flex;
+ justify-content: end;
+ width: 100%;
+}
+
+.l-baseline {
+ display: flex;
+ align-items: baseline;
+}

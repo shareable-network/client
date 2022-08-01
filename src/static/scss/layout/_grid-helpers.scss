@@ -1,0 +1,16 @@
+.w-fill {
+  width: -webkit-fill-available;
+}
+
+.w-shrink {
+  width: fit-content;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.jc-sp-btw {
+  display: flex;
+  justify-content: space-between;
+}

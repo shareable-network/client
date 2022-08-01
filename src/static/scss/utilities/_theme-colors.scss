@@ -1,0 +1,36 @@
+@use "sass:map";
+
+$theme-white: #f4f7ff; // Lucent White
+$theme-black: #18181a; // Gun Powder
+$theme-dark-green: #034638;
+$theme-green: #009b5c;
+
+$theme-grey: map.get($colors, 'grey', 'darken-3');  // #424242;
+$theme-bkgd: map.get($colors, 'grey', 'lighten-5');  // #fafafa;  use @export instead 
+
+$theme-colors: (
+  'white': $theme-white,
+  'black': $theme-black,
+  'green': $theme-green,
+  'dark-green': $theme-dark-green
+) !default;
+
+@each $color_name, $color_value in $theme-colors {
+  .theme-#{$color_name} {
+    background-color: $color_value !important;
+  }
+  .theme-#{$color_name}-text {
+    color: $color_value !important;
+  }
+}
+
+// usage: color("name_of_color", "type_of_color")
+// to avoid to repeating map-get($colors, ...)
+
+@function theme-color($color) {
+  @if map-has-key($theme-colors, $color) {
+    @return map-get($theme-colors, $color);
+  }
+  @warn "Unknown `#{$color}` in $theme-colors.";
+  @return null;
+}

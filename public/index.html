@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agranet-Client</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body x-data="$store.app" x-init="load()" class="theme-white">
+
+  <!-- header -->
+  <nav class="theme-green">
+    <div class="nav-wrapper">
+      <!-- sidebar -->
+      <div class="left">
+        <ul id="slide-out" class="sidenav">
+          <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+          <li><a href="#!">Second Link</a></li>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader">Subheader</a></li>
+          <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+      </div>
+      
+      <!-- logo -->
+      <a href="#" class="logo left">
+        <img class="material-icons" alt='Главная' src="img/logo.png" height="48px"/>
+        <span>AGRA</span>
+      </a>
+      <!-- header options -->
+      <ul id="nav-mobile" class="left">
+        <li><a href="/">Feed</a></li>
+        <li><a href="#new"><i class="material-icons">add</i></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="right">
+        <!-- search input -->
+        <li>
+          <span class="search">
+            <input type='text' placeholder='Search' class="search__input" />
+            <button class="btn">
+              <i class="material-icons">search</i>
+            </button>
+          </span>
+        </li>
+        <!-- chain info -->
+        <li>
+          <span class="item" x-show="!hasWallet()">install <a href="https://metamask.io/download.html">metamask</a></span>
+          <span class="item" x-show="hasWallet()">
+            <button class="btn btn-secondary" @click="getPublisher()" x-show="!publisher">connect wallet</button>
+            <span x-show="publisher">
+              <span x-text="'Chain: '+ chainLimiter(publisher)"></span>
+              <button class="btn btn-secondary" @click="switchChain()" x-show="!chainIsValid()">
+                Change
+              </button>
+            </span>
+          </span>
+        </li>
+        <!-- avatar section -->
+        <li>
+          <a class="logo">
+            <img height="48px" width="48px" class="circle" src="https://n1s1.hsmedia.ru/85/64/3f/85643f2e03be52b0bc00cb0f60b12f31/728x546_1_76d11b54618da2bff71c051801a697db@1441x1081_0xac120003_18866572441655464119.jpeg" />
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <main id="router-view" class="container"></main>
+
+</body>
+</html>

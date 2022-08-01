@@ -1,0 +1,20 @@
+$plate-margin:          2rem 0;
+$plate-padding:         2rem;
+
+.plate {
+  @extend .z-depth-2;
+
+  display: block;
+  border-radius: $border-radius;
+  height: fit-content;
+  margin: $plate-margin;
+  padding: $plate-padding;
+}
+
+.theme-plate {
+  @extend .theme-green;
+  @extend .white-text;
+
+  padding: 0.5rem;
+  border-radius: $border-radius-small;
+}
