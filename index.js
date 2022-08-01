@@ -73,11 +73,14 @@ document.addEventListener('alpine:init', () => {
                             method: 'wallet_addEthereumChain',
                             params: [
                                 {
-                                    chainId: '0x61',
-                                    rpcUrl: 'https://api.avax-test.network/ext/bc/C/rpc',
+                                    chainId: '0xa869',
+                                    chainName: 'Avalanche Fuji Testnet',
+                                    rpcUrls: ['https://api.avax-test.network/ext/bc/C/rpc'],
+                                    blockExplorerUrls: ['https://testnet.snowtrace.io'],
                                 },
                             ],
                         });
+                        window.location.reload();
                     } catch (addError) {
                         console.error(addError);
                     }
