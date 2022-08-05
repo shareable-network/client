@@ -63,7 +63,7 @@
           <span class="item" x-show="hasWallet()">
             <button class="btn-theme btn-secondary" @click="getPublisher()" x-show="!publisher">connect wallet</button>
             <span x-show="publisher">
-              <span x-text="'Chain: '+ hashFormatter(publisher)"></span>
+              <span x-text="'Wallet: '+ hashFormatter(publisher)"></span>
               <button class="btn-theme btn-secondary" @click="switchChain()" x-show="!chainIsValid()">
                 Change
               </button>
