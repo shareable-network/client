@@ -2151,11 +2151,11 @@
   color: #18181a !important;
 }
 
-.theme-green, .publication__user, .theme-plate, .btn-theme:focus, .btn-theme {
+.theme-dark-green, .publication__user, .theme-plate, .btn-theme:focus, .btn-theme {
   background-color: #009b5c !important;
 }
 
-.theme-green-text {
+.theme-dark-green-text {
   color: #009b5c !important;
 }
 

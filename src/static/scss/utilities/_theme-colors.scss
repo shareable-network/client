@@ -11,7 +11,7 @@ $theme-bkgd: map.get($colors, 'grey', 'lighten-5');  // #fafafa;  use @export in
 $theme-colors: (
   'white': $theme-white,
   'black': $theme-black,
-  'green': $theme-green,
+  'green': $theme-dark-green,
   'dark-green': $theme-dark-green
 ) !default;
 
@@ -34,3 +34,9 @@ $theme-colors: (
   @warn "Unknown `#{$color}` in $theme-colors.";
   @return null;
 }
+
+
+.btn-theme {
+  @extend .btn;
+  background-color: $theme-green !important;
+} 

@@ -1,6 +1,6 @@
 import Alpine from 'alpinejs';
 import {ethers} from 'ethers';
-import chainLimiter from './utils/chainLimiter.js';
+import hashFormatter from './utils/hashFormatter.js';
 import M from './libs/materialize/bin/materialize.min.js';
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -113,7 +113,7 @@ Alpine.store('app', {
     }
   },
 
-  chainLimiter,
+  hashFormatter,
 });
 
 Alpine.start();

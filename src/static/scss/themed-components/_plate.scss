@@ -1,4 +1,5 @@
 $plate-margin:          2rem 0;
+$plate-margin-small:    .5rem 0;
 $plate-padding:         2rem;
 
 .plate {
@@ -11,8 +12,14 @@ $plate-padding:         2rem;
   padding: $plate-padding;
 }
 
+.plate-small {
+  @extend .plate;
+  border-radius: $border-radius-small;
+  margin: $plate-margin-small;
+}
+
 .theme-plate {
-  @extend .theme-green;
+  @extend .theme-dark-green;
   @extend .white-text;
 
   padding: 0.5rem;

@@ -13,13 +13,33 @@
           <a href="#!" class="breadcrumb">Channel</a>
           <a href="#!" class="breadcrumb">Collection</a>
           <a href="#!" class="breadcrumb">Content</a> -->
-          <a href="#!" class="breadcrumb" x-text="chainLimiter(entry.publisher)">Publisher</a>
+          <a href="#!" class="breadcrumb" x-text="hashFormatter(entry.publisher)">Publisher</a>
           <a href="#!" class="breadcrumb" x-text="entry.channelIdDecoded">Channel</a>
           <a href="#!" class="breadcrumb" x-text="entry.collectionIdDecoded">Collection</a>
           <a href="#!" class="breadcrumb" x-text="entry.contentIdDecoded">Content</a>
           <!-- <span href="#!" class="breadcrumb"><a>Content</a>&nbsp;|&nbsp;<a>Publisher</a></span> -->
         </div>
       </div>
+
+      <!-- prices before content -->
+      <!--
+      <div class="row comment-icons">
+        <div class="col">
+          <div class="l-row">
+            <div class="d-flex">like</div>
+            <div class="theme-plate publication__price">$0.75</div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="l-row">
+            <div class="d-flex">comment</div>
+            <div class="theme-plate publication__price">$1.5</div>
+          </div>
+        </div>
+
+      <div class="row"></div>
+      -->
 
       <!-- content -->
       <div x-init="() => {
@@ -32,10 +52,11 @@
         </video>
       </div>
       
-      <div class="row"></div>
+      <div class="row">&nbsp;</div>
 
-      <!-- prices -->
-      <div class="row comment-icons theme-green-text">
+      <!-- prices under content -->
+      <!--
+      <div class="row comment-icons theme-dark-green-text">
         <div class="col s6">
           <i class="material-icons">favorite</i>
           <span>120</span>
@@ -50,80 +71,67 @@
       </div>
 
       <div class="row"></div>
+      -->
 
       <div class="discussion row">
+
+        <!-- reactions -->
+        <h5>Reactions</h5>
+        <ul class="row reactions">
+          <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
+            <li class="reaction plate-small white theme-black-text">
+              <span class="reaction__text" x-text="item[0]"></span>
+              <span class="reaction__count" x-text="item[1]"></span>
+            </li>
+          </template>
+        </ul>
+
+        <div class="row">
+          <form class="l-row w-100" @submit.prevent="await saveReaction(entry)">
+            <div class="input-field col s6" x-model="entry.reaction">
+              <input id="user-reaction" type="text" class="validate">
+              <label for="user-reaction">Your Reaction</label>
+            </div>
+            <div class="col l-row w-100">
+              <button class="btn-theme d-flex">Save</button>
+              <span class="theme-plate publication__price d-flex">$0.75</span>
+            </div>
+          </form>
+        </div>
+
+        <!-- comments -->
+        <h5>Comments</h5>
+        <div class="row comments">
+          <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
+            <div class="comment plate-small">
+              <div class="comment__avatar theme-plate">
+                <!-- TODO: commentors hash -->
+                <!-- <span x-text="item"></span> -->
+                <span>0xd...1c145</span>
+              </div>
+              <div class="comment__text">
+                <span x-text="item[1]"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+        
+
+        <div class="row">
+          <form class="l- row w-100" @submit.prevent="await saveComment(entry)">
+            <div class="input-field col s9" x-model="entry.comment">
+              <input id="user-comment" type="text" class="validate">
+              <label for="user-comment">Your Сomment</label>
+            </div>
+            <div class="col s3 l-row w-100">
+              <button class="btn-theme d-flex">Save</button>
+              <span class="theme-plate publication__price d-flex">$1.5</span>
+            </div>
+          </form>
+        </div>
+
         <!-- реакция - короткий текст 31 символ -->
         <!-- реакция другого человека - ссылка с подстановкой в это поле текста ссылки -->
-        <!-- вместо имен хеши (это поле publisher иногда author) -->
-        <!-- аватарок нет -->
-        <div class="row">
-          <div class="col s3">
-            <h6 class="theme-dark-green-text">Reactions</h6>
-            <hr />
-          </div>
-          <div class="col s9">
-            <h6 class="theme-dark-green-text">Comments</h6>
-            <hr />
-          </div>
-        </div>
-        
-        <!-- reactions & comments section -->
-        <div class="row">
-          <!-- reactions -->
-          <ul class="col s3 reactions">
-            <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
-              <li class="reaction">
-                <span class="reaction__text" x-text="item[0]"></span>
-                <span class="reaction__count" x-text="item[1]"></span>
-              </li>
-            </template>
-          </ul>
-
-          <!-- comments -->
-          <div class="col s9">
-            <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
-              <div class="comment">
-                <div class="comment__avatar">
-                  <img class="circle"
-                          src="https://n1s1.hsmedia.ru/85/64/3f/85643f2e03be52b0bc00cb0f60b12f31/728x546_1_76d11b54618da2bff71c051801a697db@1441x1081_0xac120003_18866572441655464119.jpeg"
-                  />
-                </div>
-                <div class="comment__text">
-                  <div class="theme-plate">Иван Васильков</div>
-                  <span x-text="item[1]"></span>
-                </div>
-              </div>
-            </template>
-          </div>
-        </div>
-
-        <!-- reaction & comment inputs with prices again -->
-        <div class="row">
-          <div class="col s3">
-            <hr />
-            <form @submit.prevent="await saveReaction(entry)">
-              <div>Your Reaction:</div>
-              <div><input x-model="entry.reaction"></input></div>
-              <div>
-                <button class="btn">Save</button>
-                <span class="theme-plate publication__price" style="display: inline-block;">$0.75</span>
-              </div>
-            </form>
-          </div>
-
-          <div class="col s9">
-            <hr />
-            <form @submit.prevent="await saveComment(entry)">
-              <div>Your Comment:</div>
-              <div><input x-model="entry.comment"></input></div>
-              <div>
-                <button class="btn">Save</button>
-                <span class="theme-plate publication__price" style="display: inline-block;">$1.5</span>
-              </div>
-            </form>
-          </div>
-        </div>
-        
       </div>
     </li>
   </template>

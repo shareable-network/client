@@ -13,16 +13,16 @@
 <body x-data="$store.app" x-init="load()" class="theme-white">
 
   <!-- header -->
-  <nav class="theme-green">
+  <nav class="theme-dark-green">
     <div class="nav-wrapper">
       <!-- sidebar -->
       <div class="left">
         <ul id="slide-out" class="sidenav">
-          <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-          <li><a href="#!">Second Link</a></li>
+          <li><a href="http://agra.network.tilda.ws" rel="noreferrer" target="_blank"><i class="material-icons">cloud</i>Check for updates</a></li>
+          <li><a href="http://agra.network.tilda.ws" rel="noreferrer" target="_blank">Soon</a</li>
           <li><div class="divider"></div></li>
-          <li><a class="subheader">Subheader</a></li>
-          <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+          <li><a class="subheader" href="http://agra.network.tilda.ws" rel="noreferrer" target="_blank">Agra</a></li>
+          <li><a class="waves-effect" href="http://agra.network.tilda.ws" rel="noreferrer" target="_blank">Net</a></li>
         </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
       </div>
@@ -35,7 +35,15 @@
       <!-- header options -->
       <ul id="nav-mobile" class="left">
         <li><a href="/">Feed</a></li>
-        <li><a href="#new"><i class="material-icons">add</i></a></li>
+        <li><a href="http://agra.network.tilda.ws" rel="noreferrer" target="_blank">Info</a></li>
+        <li><a href="#new"><i class="material-icons"></i></a></li>
+        <!-- TODO: <li>
+          <a href="#new">
+            <button class="btn-theme">
+              <i class="material-icons">add</i>
+            </button>
+          </a>
+        </li> -->
       </ul>
 
       <ul id="nav-mobile" class="right">
@@ -43,19 +51,20 @@
         <li>
           <span class="search">
             <input type='text' placeholder='Search' class="search__input" />
-            <button class="btn">
+            <button class="btn-theme">
               <i class="material-icons">search</i>
             </button>
           </span>
         </li>
         <!-- chain info -->
         <li>
-          <span class="item" x-show="!hasWallet()">install <a href="https://metamask.io/download.html">metamask</a></span>
+          <!-- <button class="item btn btn-secondary" x-show="!hasWallet()"><a href="https://metamask.io/download.html">install metamask</a></button> -->
+          <a href="https://metamask.io/download.html" x-show="!hasWallet()"><button class="btn-theme item btn-secondary"> install metamask</button></a>
           <span class="item" x-show="hasWallet()">
-            <button class="btn btn-secondary" @click="getPublisher()" x-show="!publisher">connect wallet</button>
+            <button class="btn-theme btn-secondary" @click="getPublisher()" x-show="!publisher">connect wallet</button>
             <span x-show="publisher">
-              <span x-text="'Chain: '+ chainLimiter(publisher)"></span>
-              <button class="btn btn-secondary" @click="switchChain()" x-show="!chainIsValid()">
+              <span x-text="'Chain: '+ hashFormatter(publisher)"></span>
+              <button class="btn-theme btn-secondary" @click="switchChain()" x-show="!chainIsValid()">
                 Change
               </button>
             </span>

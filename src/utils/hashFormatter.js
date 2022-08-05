@@ -1,4 +1,4 @@
-export default function chainLimiter(chain) {
+export default function hashFormatter(chain) {
   if (typeof chain !== 'string') {
     return '';
   }

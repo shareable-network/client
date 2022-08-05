@@ -1,25 +1,27 @@
-.mt-5 {
- margin-top: 5px;
-}
-.mb-5 {
- margin-bottom: 5px;
-}
-.ml-5 {
- margin-left: 5px;
-}
-.mr-5 {
- margin-right: 5px;
-}
+@each $i in 0, 5, 10, 20 {
+  .mv-#{$i} {
+    margin-top: #{$i}px;
+    margin-bottom: #{$i}px;
+  }
 
-.mt-20 {
- margin-top: 20px;
-}
-.mb-20 {
- margin-bottom: 20px;
-}
-.ml-20 {
- margin-left: 20px;
-}
-.mr-20 {
- margin-right: 20px;
+  .mh-#{$i} {
+    margin-left: #{$i}px;
+    margin-right: #{$i}px;
+  }
+
+  .mt-#{$i} {
+    margin-top: #{$i}px;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: #{$i}px;
+  }
+
+  .ml-#{$i} {
+    margin-left: #{$i}px;
+  }
+
+  .mr-#{$i} {
+    margin-right: #{$i}px;
+  }
 }
