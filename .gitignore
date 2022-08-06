@@ -2,4 +2,5 @@ secret/
 package-lock.json
 node_modules/
 build/
+server/
 *.xcf

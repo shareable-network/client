@@ -8,7 +8,8 @@
     "lint-todo": "npx eslint . && npx stylelint --fix **/*.scss",
     "lint": "echo start",
     "start": "npm run lint && npx webpack-dev-server --mode development",
-    "build": "npm run lint  && npx webpack"
+    "build": "npm run lint  && npx webpack",
+    "test-prod": "npm run build && node ./server/server.js"
   },
   "author": "",
   "license": "ISC",

@@ -13,7 +13,6 @@ window.publicationsRoute = () => {
       },
     ] : [],
     load: async function () {
-      console.log('trying to load');
       this.$watch('$store.app.publisher', (publisher, prevPublisher) => {
         if (this.entries.length === 0 && publisher && !prevPublisher) {
           this.getEntryList();

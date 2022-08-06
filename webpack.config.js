@@ -68,26 +68,18 @@ module.exports = {
   },
 
   plugins: [
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(PATHS.static, 'img/'),
-    //       to: 'img/',
-    //     },
-    //     {
-    //       from: path.resolve(PATHS.static, 'fonts/'),
-    //       to: 'fonts/',
-    //     },
-    //   ],
-    // }),
-    // new CopyPlugin({
-    //     patterns: [
-    //       {
-    //         from: PATHS.public,
-    //         to: '.',
-    //       },
-    //     ],
-    //   }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(PATHS.static, 'img/'),
+          to: 'img/',
+          filter: async (resourcePath) => {
+            const ext = path.extname(resourcePath);
+            return !(['.xcf'].find((el) => el === ext));
+          },
+        },
+      ],
+    }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(PATHS.public, 'index.html'),
@@ -104,7 +96,6 @@ module.exports = {
 
   module: {
     rules: [
-      
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
@@ -128,15 +119,6 @@ module.exports = {
         enforce: 'pre',
         use: ['source-map-loader'],
       },
-      // {
-      //   test: /\.(js|ts)x?$/,
-      //   loader: 'babel-loader',
-      //   options: {
-      //     exclude: [
-      //       '/node_modules/',
-      //     ],
-      //   },
-      // },
     ],
   },
   resolve: {
