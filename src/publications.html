@@ -5,41 +5,12 @@
       <div class="row">
         <!-- breadcrumb -->
         <div class="publication__user">
-          <!-- think of using avatar here -->
-          <!-- <img height="48px" width="48px" class="circle"
-                  src="https://n1s1.hsmedia.ru/85/64/3f/85643f2e03be52b0bc00cb0f60b12f31/728x546_1_76d11b54618da2bff71c051801a697db@1441x1081_0xac120003_18866572441655464119.jpeg"
-          /> -->
-          <!-- <a href="#!" class="breadcrumb">Publisher</a>
-          <a href="#!" class="breadcrumb">Channel</a>
-          <a href="#!" class="breadcrumb">Collection</a>
-          <a href="#!" class="breadcrumb">Content</a> -->
           <a href="#!" class="breadcrumb" x-text="hashFormatter(entry.publisher)">Publisher</a>
           <a href="#!" class="breadcrumb" x-text="entry.channelIdDecoded">Channel</a>
           <a href="#!" class="breadcrumb" x-text="entry.collectionIdDecoded">Collection</a>
           <a href="#!" class="breadcrumb" x-text="entry.contentIdDecoded">Content</a>
-          <!-- <span href="#!" class="breadcrumb"><a>Content</a>&nbsp;|&nbsp;<a>Publisher</a></span> -->
         </div>
       </div>
-
-      <!-- prices before content -->
-      <!--
-      <div class="row comment-icons">
-        <div class="col">
-          <div class="l-row">
-            <div class="d-flex">like</div>
-            <div class="theme-plate publication__price">$0.75</div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="l-row">
-            <div class="d-flex">comment</div>
-            <div class="theme-plate publication__price">$1.5</div>
-          </div>
-        </div>
-
-      <div class="row"></div>
-      -->
 
       <!-- content -->
       <div x-init="() => {
@@ -53,25 +24,6 @@
       </div>
       
       <div class="row">&nbsp;</div>
-
-      <!-- prices under content -->
-      <!--
-      <div class="row comment-icons theme-dark-green-text">
-        <div class="col s6">
-          <i class="material-icons">favorite</i>
-          <span>120</span>
-          <span class="theme-plate publication__price">$0.75</span>
-        </div>
-
-        <div class="col s6">
-          <i class="material-icons">mode_comment</i>
-          <span>9</span>
-          <span class="theme-plate publication__price">$1.5</span>
-        </div>
-      </div>
-
-      <div class="row"></div>
-      -->
 
       <div class="discussion row">
 
@@ -130,8 +82,6 @@
           </form>
         </div>
 
-        <!-- реакция - короткий текст 31 символ -->
-        <!-- реакция другого человека - ссылка с подстановкой в это поле текста ссылки -->
       </div>
     </li>
   </template>
