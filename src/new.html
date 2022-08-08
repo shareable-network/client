@@ -1,0 +1,10 @@
+<h3>New Publication</h3>
+<form x-data="newPublicationRoute()" @submit.prevent="save">
+  <div>Publisher address <span x-text="publisher"></span></div>
+  <div>Channel Id<input x-model="channelId" maxlength="31"></div>
+  <div>Collection Id<input x-model="collectionId" maxlength="31"></div>
+  <div>Content Id<input x-model="contentId" maxlength="31"></div>
+  <div>Content Type <select x-model="contentMetadata[0].value"><option>video</option></select></div>
+  <div>Content <input x-on:change="content = Object.values($event.target.files)" type="file"></div>
+  <button>Save</button>
+</form>

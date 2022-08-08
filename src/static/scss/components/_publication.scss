@@ -1,0 +1,110 @@
+.publication {
+  &__price {
+    display: flex;
+    margin: 1rem;
+  }
+
+  &__user {
+    @extend .theme-dark-green;
+    @extend .white-text;
+    width: fit-content;
+    border-radius: $border-radius-small;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    // TODO:
+    line-height: 64px;
+
+    & img {
+      display: flex;
+      width: 50px;
+      height: 50px;
+    }
+
+    &__name {
+      margin: 0 0.5rem 0 1rem;
+      line-height: 32px;
+      font-size: 1rem;
+    }
+  } 
+}
+
+.discussion {
+  .reactions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .reaction {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 2rem;
+    height: 3rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: $border-radius-small;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      background-color: #00000030;
+      // padding: 0.5rem 2px;
+      transform: scale(1.05);
+    }
+
+    &__text {
+      // color: theme-color('green');
+    }
+
+    &__count {
+      @extend .theme-plate;
+      padding-top: 0;
+      padding-bottom: 0;
+      min-width: 2rem;
+      text-align: center;
+      margin-left: 0.5rem;
+    }
+  }
+  
+  .comments {
+    @extend .reactions;
+    flex-direction: column;
+  }
+
+  .comment {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
+    // TODO:
+    line-height: 32px;
+
+    &__avatar {
+      display: flex;
+      height: 100%;
+      
+      & img {
+        display: flex;
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      word-break: break-word;
+      height: 100%;
+      margin-left: 1rem;
+    }
+  }
+}

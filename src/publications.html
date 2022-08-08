@@ -1,0 +1,88 @@
+<h3>Publications</h3>
+<ul class="" x-data="publicationsRoute()" x-init="load()">
+  <template x-for="entry in entries" :key="entry.key">
+    <li class="plate">
+      <div class="row">
+        <!-- breadcrumb -->
+        <div class="publication__user">
+          <a href="#!" class="breadcrumb" x-text="hashFormatter(entry.publisher)">Publisher</a>
+          <a href="#!" class="breadcrumb" x-text="entry.channelIdDecoded">Channel</a>
+          <a href="#!" class="breadcrumb" x-text="entry.collectionIdDecoded">Collection</a>
+          <a href="#!" class="breadcrumb" x-text="entry.contentIdDecoded">Content</a>
+        </div>
+      </div>
+
+      <!-- content -->
+      <div x-init="() => {
+        const elems = document.querySelectorAll('.materialboxed');
+        const instances = M.Materialbox.init(elems, {});
+      }
+      ">
+        <video controls class="materialboxed" width="100%">
+          <source :src="entry.contentMetadata.src">
+        </video>
+      </div>
+      
+      <div class="row">&nbsp;</div>
+
+      <div class="discussion row">
+
+        <!-- reactions -->
+        <h5>Reactions</h5>
+        <ul class="row reactions">
+          <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
+            <li class="reaction plate-small white theme-black-text">
+              <span class="reaction__text" x-text="item[0]"></span>
+              <span class="reaction__count" x-text="item[1]"></span>
+            </li>
+          </template>
+        </ul>
+
+        <div class="row">
+          <form class="l-row w-100" @submit.prevent="await saveReaction(entry)">
+            <div class="input-field col s6" x-model="entry.reaction">
+              <input id="user-reaction" type="text" class="validate">
+              <label for="user-reaction">Your Reaction</label>
+            </div>
+            <div class="col l-row w-100">
+              <button class="btn-theme d-flex">Save</button>
+              <span class="theme-plate publication__price d-flex">$0.75</span>
+            </div>
+          </form>
+        </div>
+
+        <!-- comments -->
+        <h5>Comments</h5>
+        <div class="row comments">
+          <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
+            <div class="comment plate-small">
+              <div class="comment__avatar theme-plate">
+                <!-- TODO: commentors hash -->
+                <!-- <span x-text="item"></span> -->
+                <span>0xd...1c145</span>
+              </div>
+              <div class="comment__text">
+                <span x-text="item[1]"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+        
+
+        <div class="row">
+          <form class="l- row w-100" @submit.prevent="await saveComment(entry)">
+            <div class="input-field col s9" x-model="entry.comment">
+              <input id="user-comment" type="text" class="validate">
+              <label for="user-comment">Your Сomment</label>
+            </div>
+            <div class="col s3 l-row w-100">
+              <button class="btn-theme d-flex">Save</button>
+              <span class="theme-plate publication__price d-flex">$1.5</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </li>
+  </template>
+</ul>

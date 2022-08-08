@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agranet-Client</title>
+</head>
+
+<body x-data="$store.app" x-init="load()" class="theme-white">
+
+  <!-- header -->
+  <nav class="theme-dark-green">
+    <div class="nav-wrapper">
+      <!-- sidebar -->
+      <div class="left">
+        <ul id="slide-out" class="sidenav">
+          <li><a href="https://agranetwork.info" rel="noreferrer" target="_blank"><i class="material-icons">cloud</i>Check for updates</a></li>
+          <li><a href="https://agranetwork.info" rel="noreferrer" target="_blank">Soon</a></li>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader" href="https://agranetwork.info" rel="noreferrer" target="_blank">Agra</a></li>
+          <li><a class="waves-effect" href="https://agranetwork.info" rel="noreferrer" target="_blank">Net</a></li>
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+      </div>
+      
+      <!-- logo -->
+      <a href="#" class="logo left">
+        <img class="material-icons" alt='Home' src="img/logo.png" height="48px"/>
+        <span>AGRA</span>
+      </a>
+      <!-- header options -->
+      <ul id="nav-mobile" class="left">
+        <li><a href="/">Feed</a></li>
+        <li><a href="https://agranetwork.info" rel="noreferrer" target="_blank">Info</a></li>
+        <li><a href="#new"><i class="material-icons"></i></a></li>
+        <li>
+          <a href="#new">
+            <button class="btn-theme">
+              <i class="material-icons">add</i>
+            </button>
+          </a>
+        </li>
+      </ul>
+
+      <ul id="nav-mobile" class="right">
+        <!-- search input -->
+        <li>
+          <span class="search">
+            <input type='text' placeholder='Search' class="search__input" />
+            <button class="btn-theme">
+              <i class="material-icons">search</i>
+            </button>
+          </span>
+        </li>
+        <!-- chain info -->
+        <li>
+          <a href="https://metamask.io/download.html" x-show="!hasWallet()"><button class="btn-theme item btn-secondary"> install metamask</button></a>
+          <span class="item" x-show="hasWallet()">
+            <button class="btn-theme btn-secondary" @click="getPublisher()" x-show="!publisher">connect wallet</button>
+            <span x-show="publisher">
+              <span x-text="'Wallet: '+ hashFormatter(publisher)"></span>
+              <button class="btn-theme btn-secondary" @click="switchChain()" x-show="!chainIsValid()">
+                Change
+              </button>
+            </span>
+          </span>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <main id="router-view" class="container"></main>
+
+</body>
+</html>
