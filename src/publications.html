@@ -32,7 +32,7 @@
         <ul class="row reactions">
           <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
             <li class="reaction plate-small white theme-black-text">
-              <span class="reaction__text" x-text="item[0]"></span>
+              <span class="reaction__text" x-text="item[0]" @click="entry.reaction=item[0];saveReaction(entry)"></span>
               <span class="reaction__count" x-text="item[1]"></span>
             </li>
           </template>
