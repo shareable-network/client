@@ -41,7 +41,7 @@
         <div class="row">
           <form class="l-row w-100" @submit.prevent="await saveReaction(entry)">
             <div class="input-field col s6" x-model="entry.reaction">
-              <input id="user-reaction" type="text" class="validate">
+              <input id="user-reaction" type="text" class="validate" maxlength="31">
               <label for="user-reaction">Your Reaction</label>
             </div>
             <div class="col l-row w-100">

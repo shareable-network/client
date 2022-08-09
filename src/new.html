@@ -1,10 +1,51 @@
 <h3>New Publication</h3>
-<form x-data="newPublicationRoute()" @submit.prevent="save">
-  <div>Publisher address <span x-text="publisher"></span></div>
-  <div>Channel Id<input x-model="channelId" maxlength="31"></div>
-  <div>Collection Id<input x-model="collectionId" maxlength="31"></div>
-  <div>Content Id<input x-model="contentId" maxlength="31"></div>
-  <div>Content Type <select x-model="contentMetadata[0].value"><option>video</option></select></div>
-  <div>Content <input x-on:change="content = Object.values($event.target.files)" type="file"></div>
-  <button>Save</button>
-</form>
+<div class="row">
+  <form x-data="newPublicationRoute()" @submit.prevent="save" class="col s12">
+    <div class="input-field">
+      <input x-model="channelId" maxlength="31" id="channelId" type="text" class="validate">
+      <label for="channelId">Channel Id</label>
+    </div>
+    <div class="input-field">
+      <input x-model="collectionId" maxlength="31" id="collectionId" type="text" class="validate">
+      <label for="collectionId">Collection Id</label>
+    </div>
+    <div class="input-field">
+      <input x-model="contentId" maxlength="31" id="contentId" type="text" class="validate">
+      <label for="contentId">Content Slug</label>
+    </div>
+
+    <h5>Upload</h5>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" @change="upload($event.target.files[0])" accept="video/*">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <div class="progress" x-show="uploading">
+      <div class="indeterminate"></div>
+    </div>
+
+    <h5>Metadata</h5>
+    <ul>
+      <template x-for="(item, index) in Object.entries(contentMetadata)" :key="index" x-id="['id', 'value']">
+        <div class="row">
+          <div class="input-field col s6">
+            <input x-model="contentMetadata[index].id" maxlength="31" :id="$id('id')" type="text" class="validate">
+            <label :for="$id('id')">Key</label>
+          </div>
+          <div class="input-field col s6">
+            <input x-model="contentMetadata[index].value" :id="$id('value')" type="text" class="validate">
+            <label :for="$id('value')">Value</label>
+            <span x-show="contentMetadata[index].hint" x-text="contentMetadata[index].hint" class="helper-text" data-error="wrong" data-success="right"></span>
+          </div>
+        </div>
+      </template>
+    </ul>
+    <div class="row"><i class="Small material-icons" @click="contentMetadata.push({key: '', value: ''})">add</i></div>
+
+    <button class="waves-effect waves-light btn-large">Save</button>
+  </form>
+</div>
