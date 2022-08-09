@@ -57,12 +57,10 @@
           <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
             <div class="comment plate-small">
               <div class="comment__avatar theme-plate">
-                <!-- TODO: commentors hash -->
-                <!-- <span x-text="item"></span> -->
-                <span>0xd...1c145</span>
+                <span x-text="hashFormatter(item[1].author)"></span>
               </div>
               <div class="comment__text">
-                <span x-text="item[1]"></span>
+                <span x-text="item[1].value"></span>
               </div>
             </div>
           </template>

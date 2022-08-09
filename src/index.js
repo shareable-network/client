@@ -75,6 +75,17 @@ Alpine.store('app', {
     }, {});
   },
 
+  mergeObjects: function (rootObjects) {
+    const rootKeys = Object.keys(rootObjects);
+    return Object.keys(rootObjects[rootKeys[0]]).reduce((acc, key) => {
+      acc[key] = {};
+      rootKeys.forEach(rootKey => {
+        acc[key][rootKey] = rootObjects[rootKey][key];
+      });
+      return acc;
+    }, {});
+  },
+
   hasWallet: function () {
     return !!window.ethereum;
   },

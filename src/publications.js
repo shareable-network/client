@@ -63,8 +63,14 @@ window.publicationsRoute = () => {
           keywordIds, keywordValues);
         const [commentIds, commentAuthors, commentValues, commentStatuses] =
           await provider.getComments(entryId, 0, 10);
-        const comments = this.$store.app.arraysToObject(
-          commentIds, commentValues);
+        const commentValuesObject = this.$store.app.arraysToObject(commentIds, commentValues);
+        const commentAuthorsObject = this.$store.app.arraysToObject(commentIds, commentAuthors);
+        const commentStatusesObject = this.$store.app.arraysToObject(commentIds, commentStatuses);
+        const comments = this.$store.app.mergeObjects({
+          value: commentValuesObject,
+          author: commentAuthorsObject,
+          status: commentStatusesObject
+        });
         const [reactionIds, reactionValues] =
           await provider.getAggregatedReactions(entryId, 0, 10);
         const reactions = this.$store.app.arraysToObject(
