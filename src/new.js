@@ -19,6 +19,19 @@ window.newPublicationRoute = () => {
       M.updateTextFields();
       window.quill = new Quill('#editor', {
         theme: 'snow',
+        modules: {
+          toolbar: {
+            container: '#toolbar-container',
+            handlers: {
+              undo: () => {
+                window.quill.history.undo();
+              },
+              redo: () => {
+                window.quill.history.redo();
+              }
+            }
+          },
+        },
       });
       M.Tabs.init(document.querySelector('.tabs'), {});
     },
