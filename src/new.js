@@ -5,7 +5,6 @@ import Quill from "quill/quill";
 
 window.newPublicationRoute = () => {
   return {
-    publisher: null,
     channelId: null,
     collectionId: null,
     contentId: null,
@@ -15,25 +14,26 @@ window.newPublicationRoute = () => {
     ],
     uploading: false,
     init: async function () {
-      this.publisher = await this.$store.app.getPublisher();
-      M.updateTextFields();
-      window.quill = new Quill('#editor', {
-        theme: 'snow',
-        modules: {
-          toolbar: {
-            container: '#toolbar-container',
-            handlers: {
-              undo: () => {
-                window.quill.history.undo();
-              },
-              redo: () => {
-                window.quill.history.redo();
+      this.$nextTick(() => {
+        window.quill = new Quill('#editor', {
+          theme: 'snow',
+          modules: {
+            toolbar: {
+              container: '#toolbar-container',
+              handlers: {
+                undo: () => {
+                  window.quill.history.undo();
+                },
+                redo: () => {
+                  window.quill.history.redo();
+                }
               }
-            }
+            },
           },
-        },
+        });
+        M.Tabs.init(document.querySelector('.tabs'), {});
+        M.updateTextFields();
       });
-      M.Tabs.init(document.querySelector('.tabs'), {});
     },
     upload: async function (file) {
       this.uploading = true;
