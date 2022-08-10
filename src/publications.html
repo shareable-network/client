@@ -18,11 +18,26 @@
         const instances = M.Materialbox.init(elems, {});
       }
       ">
-        <video controls class="materialboxed" width="100%">
-          <source :src="entry.contentMetadata.src">
-        </video>
+        <template x-if="entry.contentMetadata.type === 'video'">
+          <video controls class="materialboxed" width="100%">
+            <source :src="entry.contentMetadata.src">
+          </video>
+        </template>
+        <template x-if="entry.contentMetadata.type === 'audio'">
+          <audio controls class="materialboxed" width="100%">
+            <source :src="entry.contentMetadata.src">
+          </audio>
+        </template>
+        <template x-if="entry.contentMetadata.type === 'image'">
+          <picture controls class="materialboxed" width="100%">
+            <img :src="entry.contentMetadata.src">
+          </picture>
+        </template>
+        <template x-if="entry.contentMetadata.type === 'html'">
+          <iframe class="materialboxed" width="100%" :src="entry.contentMetadata.src" sandbox></iframe>
+        </template>
       </div>
-      
+
       <div class="row">&nbsp;</div>
 
       <div class="discussion row">

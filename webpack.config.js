@@ -29,6 +29,15 @@ function genHTMLs(root) {
     template: path.resolve(root, filename),
     inject: 'body',
     favicon: path.resolve(PATHS.public, 'favicon.png'),
+    minify: {
+      collapseWhitespace: true,
+      keepClosingSlash: true,
+      removeComments: true,
+      removeRedundantAttributes: false, // keep type="text" which is required for materialize
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      useShortDoctype: true
+    }
   }));
 }
 
@@ -97,15 +106,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.css|.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpe?g|png|gif|svg|ico|webp)$/i,
+        test: /\.(jpe?g|png|gif|ico|webp)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'img/[name][ext][query]',
         },
+      },
+      {
+        test: /\.svg$/i,
+        loader: 'svg-inline-loader',
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,

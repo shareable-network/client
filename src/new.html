@@ -14,18 +14,86 @@
       <label for="contentId">Content Slug</label>
     </div>
 
-    <h5>Upload</h5>
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file" @change="upload($event.target.files[0])" accept="video/*">
+    <h5>Content</h5>
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#mediatab">Media</a></li>
+          <li class="tab col s3"><a href="#texttab">Text</a></li>
+        </ul>
       </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+      <div id="mediatab" class="col s12">
+        <div class="file-field input-field">
+          <div class="btn green">
+            <span>File</span>
+            <input type="file" @change="upload($event.target.files[0])" accept="video/*,audio/*,image/*">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <div class="progress" x-show="uploading"><div class="indeterminate"></div></div>
       </div>
-    </div>
-    <div class="progress" x-show="uploading">
-      <div class="indeterminate"></div>
+      <div id="texttab" class="col s12">
+        <div id="toolbar-container">
+          <span class="ql-formats">
+            <select class="ql-font"></select>
+            <select class="ql-size"></select>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-bold"></button>
+            <button class="ql-italic"></button>
+            <button class="ql-underline"></button>
+            <button class="ql-strike"></button>
+          </span>
+          <span class="ql-formats">
+            <select class="ql-color"></select>
+            <select class="ql-background"></select>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-script" value="sub"></button>
+            <button class="ql-script" value="super"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-header" value="1"></button>
+            <button class="ql-header" value="2"></button>
+            <button class="ql-blockquote"></button>
+            <button class="ql-code-block"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-list" value="ordered"></button>
+            <button class="ql-list" value="bullet"></button>
+            <button class="ql-indent" value="-1"></button>
+            <button class="ql-indent" value="+1"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-direction" value="rtl"></button>
+            <select class="ql-align"></select>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-link"></button>
+            <button class="ql-image"></button>
+            <button class="ql-video"></button>
+            <button class="ql-formula"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-clean"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-undo">
+              <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M533.333333 341.333333c-112.853333 0-215.68 42.026667-294.4 110.933334L85.333333 298.666667v384h384l-154.24-154.24C374.186667 478.72 449.92 448 533.333333 448c151.253333 0 279.253333 98.346667 324.053334 234.666667l100.906666-33.28C899.626667 470.613333 731.733333 341.333333 533.333333 341.333333z"  /></svg>
+            </button>
+            <button class="ql-redo">
+              <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M784.853333 452.266667C706.346667 383.36 603.52 341.333333 490.666667 341.333333c-198.4 0-366.293333 129.28-424.96 308.053334L166.613333 682.666667c44.8-136.32 172.8-234.666667 324.053334-234.666667 83.413333 0 159.146667 30.72 218.24 80.426667L554.666667 682.666667h384V298.666667l-153.813334 153.6z"  /></svg>
+            </button>
+          </span>
+        </div>
+        <div id="editor">
+          <p>Hello <u>World!</u></p>
+        </div>
+        <button class="waves-effect waves-light btn-small green" @click="upload(quill.container.querySelector('.ql-editor').innerHTML)">Upload</button>
+        <div class="progress" x-show="uploading"><div class="indeterminate"></div></div>
+      </div>
     </div>
 
     <h5>Metadata</h5>
@@ -44,8 +112,8 @@
         </div>
       </template>
     </ul>
-    <div class="row"><i class="Small material-icons" @click="contentMetadata.push({key: '', value: ''})">add</i></div>
+    <div class="row"><i class="small material-icons" @click="contentMetadata.push({key: '', value: ''})">add</i></div>
 
-    <button class="waves-effect waves-light btn-large">Save</button>
+    <button class="waves-effect waves-light btn-large green">Save</button>
   </form>
 </div>
