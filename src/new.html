@@ -14,18 +14,33 @@
       <label for="contentId">Content Slug</label>
     </div>
 
-    <h5>Upload</h5>
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file" @change="upload($event.target.files[0])" accept="video/*">
+    <h5>Content</h5>
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#mediatab">Media</a></li>
+          <li class="tab col s3"><a href="#texttab">Text</a></li>
+        </ul>
       </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+      <div id="mediatab" class="col s12">
+        <div class="file-field input-field">
+          <div class="btn green">
+            <span>File</span>
+            <input type="file" @change="upload($event.target.files[0])" accept="video/*,audio/*,image/*">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <div class="progress" x-show="uploading"><div class="indeterminate"></div></div>
       </div>
-    </div>
-    <div class="progress" x-show="uploading">
-      <div class="indeterminate"></div>
+      <div id="texttab" class="col s12">
+        <div id="editor">
+          <p>Hello <u>World!</u></p>
+        </div>
+        <button class="waves-effect waves-light btn-small green" @click="upload(quill.container.querySelector('.ql-editor').innerHTML)">Upload</button>
+        <div class="progress" x-show="uploading"><div class="indeterminate"></div></div>
+      </div>
     </div>
 
     <h5>Metadata</h5>
@@ -46,6 +61,6 @@
     </ul>
     <div class="row"><i class="Small material-icons" @click="contentMetadata.push({key: '', value: ''})">add</i></div>
 
-    <button class="waves-effect waves-light btn-large">Save</button>
+    <button class="waves-effect waves-light btn-large green">Save</button>
   </form>
 </div>

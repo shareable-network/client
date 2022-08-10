@@ -97,15 +97,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.css|.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpe?g|png|gif|svg|ico|webp)$/i,
+        test: /\.(jpe?g|png|gif|ico|webp)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'img/[name][ext][query]',
         },
+      },
+      {
+        test: /\.svg$/i,
+        loader: 'svg-inline-loader',
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,

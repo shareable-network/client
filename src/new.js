@@ -1,5 +1,7 @@
 import { create } from 'ipfs-http-client';
 import { ethers } from 'ethers';
+import 'quill/dist/quill.snow.css';
+import Quill from "quill/quill";
 
 window.newPublicationRoute = () => {
   return {
@@ -15,6 +17,10 @@ window.newPublicationRoute = () => {
     init: async function () {
       this.publisher = await this.$store.app.getPublisher();
       M.updateTextFields();
+      window.quill = new Quill('#editor', {
+        theme: 'snow',
+      });
+      M.Tabs.init(document.querySelector('.tabs'), {});
     },
     upload: async function (file) {
       this.uploading = true;
@@ -29,7 +35,7 @@ window.newPublicationRoute = () => {
         headers: { authorization }
       });
       const { cid } = await ipfs.add(file);
-      this.contentMetadata.push({ id: 'type', value: 'video' });
+      this.contentMetadata.push({ id: 'type', value: file.type.split('/')[0] });
       this.contentMetadata.push({ id: 'src', value: `https://shareable.infura-ipfs.io/ipfs/${cid}` });
       this.uploading = false;
       this.$nextTick(() => {
