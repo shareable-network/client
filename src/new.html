@@ -24,7 +24,7 @@
       </div>
       <div id="mediatab" class="col s12">
         <div class="file-field input-field">
-          <div class="btn green">
+          <div class="btn-theme">
             <span>File</span>
             <input type="file" @change="upload($event.target.files[0])" accept="video/*,audio/*,image/*">
           </div>
@@ -91,7 +91,7 @@
         <div id="editor">
           <p>Hello <u>World!</u></p>
         </div>
-        <button class="waves-effect waves-light btn-small green" @click="upload(quill.container.querySelector('.ql-editor').innerHTML)">Upload</button>
+        <button class="waves-effect waves-light btn-small btn-theme" @click="upload(quill.container.querySelector('.ql-editor').innerHTML)">Upload</button>
         <div class="progress" x-show="uploading"><div class="indeterminate"></div></div>
       </div>
     </div>
@@ -114,6 +114,6 @@
     </ul>
     <div class="row"><i class="small material-icons" @click="contentMetadata.push({key: '', value: ''})">add</i></div>
 
-    <button class="waves-effect waves-light btn-large green">Save</button>
+    <button class="waves-effect waves-light btn-large btn-theme">Save</button>
   </form>
 </div>

@@ -1,4 +1,3 @@
-
 .logo, nav .logo {
   @extend .brand-logo;
   position: relative;
@@ -17,4 +16,16 @@
   &>div {
     display: flex;
   }
+}
+
+nav i.material-icons {
+  line-height: unset;
+}
+
+nav ul li {
+  padding: 0 15px;
+}
+
+nav ul a {
+  padding: 0;
 }

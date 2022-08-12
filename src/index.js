@@ -1,18 +1,11 @@
 import Alpine from 'alpinejs';
 import {ethers} from 'ethers';
 import hashFormatter from './utils/hashFormatter.js';
-import M from './libs/materialize/bin/materialize.min.js';
-
-document.addEventListener('DOMContentLoaded', function() {
-  const elems = document.querySelectorAll('.sidenav');
-  const instances = M.Sidenav.init(elems);
-});
-
-window.Alpine = Alpine
- 
+import M from 'materialize-css';
 import './static/scss/index.scss';
 import './router';
 
+window.Alpine = Alpine;
 Alpine.deferMutations();
 Alpine.store('app', {
   error: null,
@@ -26,6 +19,7 @@ Alpine.store('app', {
   infuraIpfsProjectSecret: 'd243fc418e27e3d2dd40e4587a502316',
 
   load: async function () {
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
     if(!window.ethereum) return;
     await this.setNewChain();
     this.getPublisher().catch();

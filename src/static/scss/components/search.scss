@@ -1,0 +1,28 @@
+.search {
+  display: flex;
+  width: 20em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  // TODO:
+  height: 64px;
+
+  & button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5em;
+
+    & i {
+      display: flex;
+      height: 100%;
+      line-height: unset
+    }
+  }
+  & input {
+    display: flex;
+    width: 5em;
+    color: white;
+  }
+}

@@ -30,13 +30,7 @@ function genHTMLs(root) {
     inject: 'body',
     favicon: path.resolve(PATHS.public, 'favicon.png'),
     minify: {
-      collapseWhitespace: true,
-      keepClosingSlash: true,
-      removeComments: true,
-      removeRedundantAttributes: false, // keep type="text" which is required for materialize
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      useShortDoctype: true
+      removeRedundantAttributes: false,
     }
   }));
 }
@@ -95,6 +89,9 @@ module.exports = {
       inject: 'body',
       scriptLoading: 'blocking',
       favicon: path.resolve(PATHS.public, 'favicon.png'),
+      minify: {
+        removeRedundantAttributes: false,
+      }
     }),
     ...genHTMLs(PATHS.src),
     new CleanWebpackPlugin(),

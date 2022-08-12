@@ -201,9 +201,10 @@ nav {
   nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
     height: $navbar-height;
     line-height: $navbar-line-height;
-    &.material-icons {
-      line-height: unset;
-    }
+  }
+  nav i.material-icons {
+    height: unset;
+    line-height: unset;
   }
   .navbar-fixed {
     height: $navbar-height;
