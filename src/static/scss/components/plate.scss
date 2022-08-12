@@ -10,6 +10,11 @@ $plate-padding:         2rem;
   height: fit-content;
   margin: $plate-margin;
   padding: $plate-padding;
+
+  iframe {
+    border: 0;
+    width: 100%;
+  }
 }
 
 .plate-small {

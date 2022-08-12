@@ -34,7 +34,8 @@
           </picture>
         </template>
         <template x-if="entry.contentMetadata.type === 'html'">
-          <iframe class="materialboxed" width="100%" :src="entry.contentMetadata.src" sandbox></iframe>
+          <iframe :src="entry.contentMetadata.src" sandbox style="height:20vh"></iframe>
+          <!--<iframe :src="'/api/proxy/' + encodeURIComponent(entry.contentMetadata.src)" :src="entry.contentMetadata.src" sandbox="allow-same-origin" onload="this.height = this.contentWindow.document.documentElement.scrollHeight + 'px'"></iframe>-->
         </template>
       </div>
 

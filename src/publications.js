@@ -1,5 +1,4 @@
 import {ethers} from 'ethers';
-import {iframeResize} from 'iframe-resizer';
 
 window.publicationsRoute = () => {
   return {
@@ -92,10 +91,6 @@ window.publicationsRoute = () => {
         });
         entryIds.push(entryId);
       }
-
-      this.$nextTick(() => {
-        iFrameResize({ log: true }, 'iframe');
-      });
     },
 
     saveReaction: async function (entry) {
