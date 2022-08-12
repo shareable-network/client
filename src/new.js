@@ -2,6 +2,7 @@ import { create } from 'ipfs-http-client';
 import { ethers } from 'ethers';
 import 'quill/dist/quill.snow.css';
 import Quill from "quill/quill";
+import Delta from 'quill-delta';
 
 window.newPublicationRoute = () => {
   return {
@@ -21,6 +22,9 @@ window.newPublicationRoute = () => {
             toolbar: {
               container: '#toolbar-container',
               handlers: {
+                upload: () => {
+                  document.querySelector('#toolbar-container input[type="file"]').click();
+                },
                 undo: () => {
                   window.quill.history.undo();
                 },
@@ -32,6 +36,26 @@ window.newPublicationRoute = () => {
           },
         });
         M.Tabs.init(document.querySelector('.tabs'), {});
+        M.updateTextFields();
+      });
+    },
+    uploadMedia: async function (file) {
+      const cid = await this.upload(file);
+      this.contentMetadata.push({ id: 'type', value: file.type.split('/')[0] });
+      this.contentMetadata.push({ id: 'src', value: `https://shareable.infura-ipfs.io/ipfs/${cid}` });
+      this.$nextTick(() => {
+        M.updateTextFields();
+      });
+    },
+    uploadWysiwygMedia: async function (file) {
+      const cid = await this.upload(file);
+      window.quill.updateContents(new Delta().insert({ video: `https://shareable.infura-ipfs.io/ipfs/${cid}` }));
+    },
+    uploadWysiwygText: async function (file) {
+      const cid = await this.upload(file);
+      this.contentMetadata.push({ id: 'type', value: 'html' });
+      this.contentMetadata.push({ id: 'src', value: `https://shareable.infura-ipfs.io/ipfs/${cid}` });
+      this.$nextTick(() => {
         M.updateTextFields();
       });
     },
@@ -48,12 +72,8 @@ window.newPublicationRoute = () => {
         headers: { authorization }
       });
       const { cid } = await ipfs.add(file);
-      this.contentMetadata.push({ id: 'type', value: file.type.split('/')[0] });
-      this.contentMetadata.push({ id: 'src', value: `https://shareable.infura-ipfs.io/ipfs/${cid}` });
       this.uploading = false;
-      this.$nextTick(() => {
-        M.updateTextFields();
-      });
+      return cid;
     },
     save: async function () {
       const core = Alpine.raw(await this.$store.app.getCore());
