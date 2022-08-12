@@ -116,6 +116,6 @@
     </ul>
     <div class="row"><i class="small material-icons" @click="contentMetadata.push({key: '', value: ''})">add</i></div>
 
-    <button class="waves-effect waves-light btn-large btn-theme">Save publication</button>
+    <button class="waves-effect waves-light btn-large btn-theme" :class="{ 'disabled': (!channelId || !collectionId || !contentId) }">Save publication</button>
   </form>
 </div>
