@@ -15,8 +15,6 @@ Alpine.store('app', {
   chainId: null,
   core: null,
   provider: null,
-  infuraIpfsProjectId: '2AnKHNQq83kUY87ARsQC5BmArQa',
-  infuraIpfsProjectSecret: 'd243fc418e27e3d2dd40e4587a502316',
 
   load: async function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));

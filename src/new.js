@@ -1,4 +1,3 @@
-import { create } from 'ipfs-http-client';
 import { ethers } from 'ethers';
 import 'quill/dist/quill.snow.css';
 import Quill from "quill/quill";
@@ -61,19 +60,11 @@ window.newPublicationRoute = () => {
     },
     upload: async function (file) {
       this.uploading = true;
-      const authorization = 'Basic ' + btoa(
-        this.$store.app.infuraIpfsProjectId + ':' +
-        this.$store.app.infuraIpfsProjectSecret,
-      );
-      const ipfs = create({
-        host: 'ipfs.infura.io',
-        port: 5001,
-        protocol: 'https',
-        headers: { authorization }
-      });
-      const { cid } = await ipfs.add(file);
+      const body = new FormData();
+      body.append('file',file,file.name);
+      const {path} = await fetch(`${window.location.origin}/api/upload`, {method: 'POST', body, credentials: 'include'}).then(r => r.json());
       this.uploading = false;
-      return cid;
+      return path;
     },
     save: async function () {
       const core = Alpine.raw(await this.$store.app.getCore());
