@@ -5,8 +5,8 @@ $theme-black: #18181a; // Gun Powder
 $theme-dark-green: #034638;
 $theme-green: #009b5c;
 
-$theme-grey: map.get($colors, 'grey', 'darken-3');  // #424242;
-$theme-bkgd: map.get($colors, 'grey', 'lighten-5');  // #fafafa;  use @export instead 
+$theme-grey: map.get($colors, 'grey', 'darken-3'); // #424242;
+$theme-bkgd: map.get($colors, 'grey', 'lighten-5'); // #fafafa;  use @export instead
 
 $theme-colors: (
   'white': $theme-white,

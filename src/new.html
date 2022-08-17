@@ -1,16 +1,16 @@
 <h3>New Publication</h3>
 <div class="row">
-  <form x-data="newPublicationRoute()" @submit.prevent="save" class="col s12">
+  <form @submit.prevent="save" class="col s12" x-data="newPublicationRoute()">
     <div class="input-field">
-      <input x-model="channelId" maxlength="31" id="channelId" type="text" class="validate">
+      <input class="validate" id="channelId" maxlength="31" type="text" x-model="channelId">
       <label for="channelId">Channel Id</label>
     </div>
     <div class="input-field">
-      <input x-model="collectionId" maxlength="31" id="collectionId" type="text" class="validate">
+      <input class="validate" id="collectionId" maxlength="31" type="text" x-model="collectionId">
       <label for="collectionId">Collection Id</label>
     </div>
     <div class="input-field">
-      <input x-model="contentId" maxlength="31" id="contentId" type="text" class="validate">
+      <input class="validate" id="contentId" maxlength="31" type="text" x-model="contentId">
       <label for="contentId">Content Slug</label>
     </div>
 
@@ -22,19 +22,23 @@
           <li class="tab col s3"><a href="#texttab">Text</a></li>
         </ul>
       </div>
-      <div id="mediatab" class="col s12">
+      <div class="col s12" id="mediatab">
         <div class="file-field input-field">
           <div class="btn-theme">
             <span>File</span>
-            <input type="file" @change="await uploadMedia($event.target.files[0]);$event.target.value=null" accept="video/*,audio/*,image/*">
+            <input @change="await uploadMedia($event.target.files[0]);$event.target.value=null"
+                   accept="video/*,audio/*,image/*"
+                   type="file">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
           </div>
         </div>
-        <div class="progress" x-show="uploading"><div class="indeterminate"></div></div>
+        <div class="progress" x-show="uploading">
+          <div class="indeterminate"></div>
+        </div>
       </div>
-      <div id="texttab" class="col s12">
+      <div class="col s12" id="texttab">
         <div id="toolbar-container">
           <span class="ql-formats">
             <select class="ql-font"></select>
@@ -73,7 +77,9 @@
           <span class="ql-formats">
             <button class="ql-link"></button>
             <button class="ql-upload">
-              <svg style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g transform="translate(96 0)"><path d="M-68.072,13.055C-68.023,12.707-68,12.354-68,12c0-4.41-3.589-8-8-8c-2.56,0-4.908,1.208-6.396,3.189   C-82.919,7.063-83.455,7-84,7c-3.859,0-7,3.141-7,7c0,0.098,0.002,0.191,0.006,0.288C-93.888,15.146-96,17.832-96,21   c0,3.857,3.141,7,7,7h17c4.411,0,8-3.588,8-8C-64,17.083-65.604,14.449-68.072,13.055z M-72,26h-17.001c-2.762,0-5-2.238-5-5   c0-2.763,2.238-5,5-5c0.152,0,0.298,0.031,0.445,0.045c-0.281-0.625-0.445-1.314-0.445-2.045c0-2.763,2.238-5,5-5   c0.902,0,1.738,0.258,2.47,0.675C-80.626,7.516-78.49,6-76.001,6C-72.687,6-70,8.686-70,12c0,0.788-0.162,1.538-0.439,2.229   c2.554,0.69,4.439,3,4.439,5.771C-66,23.313-68.685,26-72,26z"/><path d="M-86.001,18h4v6h4v-6h4l-6-6L-86.001,18z"/></g></svg>
+              <svg style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" xml:space="preserve"
+                   xmlns="http://www.w3.org/2000/svg"><g transform="translate(96 0)"><path d="M-68.072,13.055C-68.023,12.707-68,12.354-68,12c0-4.41-3.589-8-8-8c-2.56,0-4.908,1.208-6.396,3.189   C-82.919,7.063-83.455,7-84,7c-3.859,0-7,3.141-7,7c0,0.098,0.002,0.191,0.006,0.288C-93.888,15.146-96,17.832-96,21   c0,3.857,3.141,7,7,7h17c4.411,0,8-3.588,8-8C-64,17.083-65.604,14.449-68.072,13.055z M-72,26h-17.001c-2.762,0-5-2.238-5-5   c0-2.763,2.238-5,5-5c0.152,0,0.298,0.031,0.445,0.045c-0.281-0.625-0.445-1.314-0.445-2.045c0-2.763,2.238-5,5-5   c0.902,0,1.738,0.258,2.47,0.675C-80.626,7.516-78.49,6-76.001,6C-72.687,6-70,8.686-70,12c0,0.788-0.162,1.538-0.439,2.229   c2.554,0.69,4.439,3,4.439,5.771C-66,23.313-68.685,26-72,26z"/><path
+                d="M-86.001,18h4v6h4v-6h4l-6-6L-86.001,18z"/></g></svg>
             </button>
             <button class="ql-formula"></button>
           </span>
@@ -82,40 +88,59 @@
           </span>
           <span class="ql-formats">
             <button class="ql-undo">
-              <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M533.333333 341.333333c-112.853333 0-215.68 42.026667-294.4 110.933334L85.333333 298.666667v384h384l-154.24-154.24C374.186667 478.72 449.92 448 533.333333 448c151.253333 0 279.253333 98.346667 324.053334 234.666667l100.906666-33.28C899.626667 470.613333 731.733333 341.333333 533.333333 341.333333z"  /></svg>
+              <svg class="svg-icon"
+                   style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                   version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path
+                d="M533.333333 341.333333c-112.853333 0-215.68 42.026667-294.4 110.933334L85.333333 298.666667v384h384l-154.24-154.24C374.186667 478.72 449.92 448 533.333333 448c151.253333 0 279.253333 98.346667 324.053334 234.666667l100.906666-33.28C899.626667 470.613333 731.733333 341.333333 533.333333 341.333333z"/></svg>
             </button>
             <button class="ql-redo">
-              <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M784.853333 452.266667C706.346667 383.36 603.52 341.333333 490.666667 341.333333c-198.4 0-366.293333 129.28-424.96 308.053334L166.613333 682.666667c44.8-136.32 172.8-234.666667 324.053334-234.666667 83.413333 0 159.146667 30.72 218.24 80.426667L554.666667 682.666667h384V298.666667l-153.813334 153.6z"  /></svg>
+              <svg class="svg-icon"
+                   style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                   version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path
+                d="M784.853333 452.266667C706.346667 383.36 603.52 341.333333 490.666667 341.333333c-198.4 0-366.293333 129.28-424.96 308.053334L166.613333 682.666667c44.8-136.32 172.8-234.666667 324.053334-234.666667 83.413333 0 159.146667 30.72 218.24 80.426667L554.666667 682.666667h384V298.666667l-153.813334 153.6z"/></svg>
             </button>
           </span>
-          <input type="file" accept="video/*,audio/*,image/*" @change="await uploadWysiwygMedia($event.target.files[0]);$event.target.value=null" class="ql-image">
+          <input @change="await uploadWysiwygMedia($event.target.files[0]);$event.target.value=null"
+                 accept="video/*,audio/*,image/*"
+                 class="ql-image"
+                 type="file">
         </div>
         <div id="editor">
           <p>Hello <u>World!</u></p>
         </div>
-        <button class="waves-effect waves-light btn-small btn-theme" @click.prevent.stop="uploadWysiwygText(quill.container.querySelector('.ql-editor').innerHTML)">Upload</button>
-        <div class="progress" x-show="uploading"><div class="indeterminate"></div></div>
+        <button @click.prevent.stop="uploadWysiwygText(quill.container.querySelector('.ql-editor').innerHTML)"
+                class="waves-effect waves-light btn-small btn-theme">
+          Upload
+        </button>
+        <div class="progress" x-show="uploading">
+          <div class="indeterminate"></div>
+        </div>
       </div>
     </div>
 
     <h5>Metadata</h5>
     <ul>
-      <template x-for="(item, index) in Object.entries(contentMetadata)" :key="index" x-id="['id', 'value']">
+      <template :key="index" x-for="(item, index) in Object.entries(contentMetadata)" x-id="['id', 'value']">
         <div class="row">
           <div class="input-field col s6">
-            <input x-model="contentMetadata[index].id" maxlength="31" :id="$id('id')" type="text" class="validate">
+            <input :id="$id('id')" class="validate" maxlength="31" type="text"
+                   x-model="contentMetadata[index].id">
             <label :for="$id('id')">Key</label>
           </div>
           <div class="input-field col s6">
-            <input x-model="contentMetadata[index].value" :id="$id('value')" type="text" class="validate">
+            <input :id="$id('value')" class="validate" type="text" x-model="contentMetadata[index].value">
             <label :for="$id('value')">Value</label>
-            <span x-show="contentMetadata[index].hint" x-text="contentMetadata[index].hint" class="helper-text" data-error="wrong" data-success="right"></span>
+            <span class="helper-text" data-error="wrong"
+                  data-success="right" x-show="contentMetadata[index].hint" x-text="contentMetadata[index].hint"></span>
           </div>
         </div>
       </template>
     </ul>
-    <div class="row"><i class="small material-icons" @click="contentMetadata.push({key: '', value: ''})">add</i></div>
+    <div class="row"><i @click="contentMetadata.push({key: '', value: ''})" class="small material-icons">add</i>
+    </div>
 
-    <button class="waves-effect waves-light btn-large btn-theme" :class="{ 'disabled': (!channelId || !collectionId || !contentId) }">Save publication</button>
+    <button :class="{ 'disabled': (!channelId || !collectionId || !contentId) }"
+            class="waves-effect waves-light btn-large btn-theme">Save publication
+    </button>
   </form>
 </div>

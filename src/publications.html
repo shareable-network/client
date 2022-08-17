@@ -1,41 +1,38 @@
 <h3>Publications</h3>
 <ul class="" x-data="publicationsRoute()" x-init="load()">
-  <template x-for="entry in entries" :key="entry.key">
-    <li class="plate">
+  <template :key="entry.key" x-for="entry in entries">
+    <li class="plate publication">
       <div class="row">
         <!-- breadcrumb -->
         <div class="publication__user">
-          <a href="#!" class="breadcrumb" x-text="hashFormatter(entry.publisher)">Publisher</a>
-          <a href="#!" class="breadcrumb" x-text="entry.channelIdDecoded">Channel</a>
-          <a href="#!" class="breadcrumb" x-text="entry.collectionIdDecoded">Collection</a>
-          <a href="#!" class="breadcrumb" x-text="entry.contentIdDecoded">Content</a>
+          <a class="breadcrumb" href="#!" x-text="hashFormatter(entry.publisher)">Publisher</a>
+          <a class="breadcrumb" href="#!" x-text="entry.channelIdDecoded">Channel</a>
+          <a class="breadcrumb" href="#!" x-text="entry.collectionIdDecoded">Collection</a>
+          <a class="breadcrumb" href="#!" x-text="entry.contentIdDecoded">Content</a>
         </div>
       </div>
 
       <!-- content -->
-      <div x-init="() => {
-        const elems = document.querySelectorAll('.materialboxed');
-        const instances = M.Materialbox.init(elems, {});
-      }
-      ">
+      <div>
         <template x-if="entry.contentMetadata.type === 'video'">
-          <video controls class="materialboxed" width="100%">
+          <video class="materialboxed" controls>
             <source :src="entry.contentMetadata.src">
           </video>
         </template>
         <template x-if="entry.contentMetadata.type === 'audio'">
-          <audio controls class="materialboxed" width="100%">
+          <audio class="materialboxed" controls>
             <source :src="entry.contentMetadata.src">
           </audio>
         </template>
         <template x-if="entry.contentMetadata.type === 'image'">
-          <picture controls class="materialboxed" width="100%">
+          <picture class="materialboxed" controls>
             <img :src="entry.contentMetadata.src">
           </picture>
         </template>
         <template x-if="entry.contentMetadata.type === 'html'">
-          <!--<iframe :src="entry.contentMetadata.src" sandbox style="height:20vh"></iframe>-->
-          <iframe :src="'/api/proxy/' + encodeURIComponent(entry.contentMetadata.src)" sandbox="allow-same-origin" onload="this.height = this.contentWindow.document.documentElement.scrollHeight + 'px'"></iframe>
+          <iframe :src="'/api/proxy/' + encodeURIComponent(entry.contentMetadata.src)"
+                  onload="this.height = this.contentWindow.document.documentElement.scrollHeight + 'px'"
+                  sandbox="allow-same-origin"></iframe>
         </template>
       </div>
 
@@ -46,18 +43,18 @@
         <!-- reactions -->
         <h5>Reactions</h5>
         <ul class="row reactions">
-          <template x-for="item in Object.entries(entry.reactions)" :key="item[0]">
+          <template :key="item[0]" x-for="item in Object.entries(entry.reactions)">
             <li class="reaction plate-small white theme-black-text">
-              <span class="reaction__text" x-text="item[0]" @click="entry.reaction=item[0];saveReaction(entry)"></span>
+              <span @click="entry.reaction=item[0];saveReaction(entry)" class="reaction__text" x-text="item[0]"></span>
               <span class="reaction__count" x-text="item[1]"></span>
             </li>
           </template>
         </ul>
 
         <div class="row">
-          <form class="l-row w-100" @submit.prevent="await saveReaction(entry)">
+          <form @submit.prevent="await saveReaction(entry)" class="l-row w-100">
             <div class="input-field col s6" x-model="entry.reaction">
-              <input id="user-reaction" type="text" class="validate" maxlength="31">
+              <input class="validate" id="user-reaction" maxlength="31" type="text">
               <label for="user-reaction">Your Reaction</label>
             </div>
             <div class="col l-row w-100">
@@ -70,7 +67,7 @@
         <!-- comments -->
         <h5>Comments</h5>
         <div class="row comments">
-          <template x-for="item in Object.entries(entry.comments)" :key="item[0]">
+          <template :key="item[0]" x-for="item in Object.entries(entry.comments)">
             <div class="comment plate-small">
               <div class="comment__avatar theme-plate">
                 <span x-text="hashFormatter(item[1].author)"></span>
@@ -81,12 +78,12 @@
             </div>
           </template>
         </div>
-        
+
 
         <div class="row">
-          <form class="l- row w-100" @submit.prevent="await saveComment(entry)">
+          <form @submit.prevent="await saveComment(entry)" class="l- row w-100">
             <div class="input-field col s9" x-model="entry.comment">
-              <input id="user-comment" type="text" class="validate">
+              <input class="validate" id="user-comment" type="text">
               <label for="user-comment">Your Сomment</label>
             </div>
             <div class="col s3 l-row w-100">

@@ -7,13 +7,13 @@
   align-items: center;
   justify-content: center;
 
-  &>img {
+  & > img {
     display: flex;
-    /* сверху | справа | снизу | слева */
     margin: 4px 1em 4px 0;
+    height: 48px;
   }
 
-  &>div {
+  & > div {
     display: flex;
   }
 }
@@ -22,10 +22,19 @@ nav i.material-icons {
   line-height: unset;
 }
 
-nav ul li {
-  padding: 0 15px;
-}
+nav {
+  ul {
+    li {
+      padding: 0 15px;
+    }
 
-nav ul a {
-  padding: 0;
+    a {
+      padding: 0;
+    }
+  }
+
+  .currency {
+    height: 18px;
+    vertical-align: text-bottom;
+  }
 }

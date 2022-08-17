@@ -22,7 +22,7 @@ console.warn({PATHS, MODE});
 
 function genHTMLs(root) {
   const pages = fs.readdirSync(root)
-      .filter((filename) => path.extname(filename) === '.html');
+    .filter((filename) => path.extname(filename) === '.html');
   console.log('HTML pages:', pages);
   return pages.map((filename) => new HTMLWebpackPlugin({
     filename,
@@ -34,8 +34,6 @@ function genHTMLs(root) {
     }
   }));
 }
-
-
 
 
 module.exports = {

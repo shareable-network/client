@@ -1,4 +1,12 @@
 .publication {
+  picture, audio, video, iframe {
+    width: 100%;
+  }
+
+  picture img {
+    width: 100%;
+  }
+
   &__price {
     display: flex;
     margin: 1rem;
@@ -29,7 +37,7 @@
       line-height: 32px;
       font-size: 1rem;
     }
-  } 
+  }
 }
 
 .discussion {
@@ -40,6 +48,7 @@
     align-items: flex-start;
     justify-content: flex-start;
   }
+
   .reaction {
     display: flex;
     flex-direction: row;
@@ -72,7 +81,7 @@
       margin-left: 0.5rem;
     }
   }
-  
+
   .comments {
     @extend .reactions;
     flex-direction: column;
@@ -91,7 +100,7 @@
     &__avatar {
       display: flex;
       height: 100%;
-      
+
       & img {
         display: flex;
         width: 36px;
