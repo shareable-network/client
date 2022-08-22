@@ -1,6 +1,13 @@
 import 'quill/dist/quill.snow.css';
 import Quill from "quill/quill";
 import Delta from 'quill-delta';
+import PlainVideo from './blots/plain-video';
+import PlainAudio from './blots/plain-audio';
+import PlainImage from './blots/plain-image';
+
+Quill.register(PlainVideo, true);
+Quill.register(PlainAudio, true);
+Quill.register(PlainImage, true);
 
 window.newPublicationRoute = () => {
   return {
@@ -47,7 +54,11 @@ window.newPublicationRoute = () => {
     },
     uploadWysiwygMedia: async function (file) {
       const cid = await this.upload(file);
-      window.quill.updateContents(new Delta().insert({video: `https://shareable.infura-ipfs.io/ipfs/${cid}`}));
+      document.querySelector('#toolbar-container input[type="file"]').value = null;
+      const position = window.quill.getSelection()?.index || 0;
+      const blot = 'plain-' + file.type.split('/')[0];
+      const url = `https://shareable.infura-ipfs.io/ipfs/${cid}`;
+      window.quill.updateContents(new Delta().retain(position).insert({[blot]: url}));
     },
     uploadWysiwygText: async function (file) {
       const cid = await this.upload(file);
