@@ -47,7 +47,7 @@ window.newPublicationRoute = () => {
     uploadMedia: async function (file) {
       const cid = await this.upload(file);
       this.contentMetadata.push({id: 'type', value: file.type.split('/')[0]});
-      this.contentMetadata.push({id: 'src', value: `https://shareable.infura-ipfs.io/ipfs/${cid}`});
+      this.contentMetadata.push({id: 'src', value: `ipfs://${cid}`});
       this.$nextTick(() => {
         M.updateTextFields();
       });
@@ -57,13 +57,13 @@ window.newPublicationRoute = () => {
       document.querySelector('#toolbar-container input[type="file"]').value = null;
       const position = window.quill.getSelection()?.index || 0;
       const blot = 'plain-' + file.type.split('/')[0];
-      const url = `https://shareable.infura-ipfs.io/ipfs/${cid}`;
+      const url = `ipfs://${cid}`;
       window.quill.updateContents(new Delta().retain(position).insert({[blot]: url}));
     },
     uploadWysiwygText: async function (file) {
       const cid = await this.upload(file);
       this.contentMetadata.push({id: 'type', value: 'html'});
-      this.contentMetadata.push({id: 'src', value: `https://shareable.infura-ipfs.io/ipfs/${cid}`});
+      this.contentMetadata.push({id: 'src', value: `ipfs://${cid}`});
       this.$nextTick(() => {
         M.updateTextFields();
       });

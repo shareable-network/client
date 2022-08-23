@@ -16,23 +16,21 @@
       <div>
         <template x-if="entry.contentMetadata.type === 'video'">
           <video class="materialboxed" controls>
-            <source :src="entry.contentMetadata.src">
+            <source :src="getUrl(entry)">
           </video>
         </template>
         <template x-if="entry.contentMetadata.type === 'audio'">
           <audio class="materialboxed" controls>
-            <source :src="entry.contentMetadata.src">
+            <source :src="getUrl(entry)">
           </audio>
         </template>
         <template x-if="entry.contentMetadata.type === 'image'">
           <picture class="materialboxed" controls>
-            <img :src="entry.contentMetadata.src">
+            <img :src="getUrl(entry)">
           </picture>
         </template>
         <template x-if="entry.contentMetadata.type === 'html'">
-          <iframe :src="'/api/proxy/' + encodeURIComponent(entry.contentMetadata.src)"
-                  onload="this.height = this.contentWindow.document.documentElement.scrollHeight + 'px'"
-                  sandbox="allow-same-origin"></iframe>
+          <div x-init="appendContent(entry, $el)"></div>
         </template>
       </div>
 
